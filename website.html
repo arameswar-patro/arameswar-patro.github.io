@@ -3,124 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Master Quiz</title>
+    <title>Academic Portfolio</title>
+    
+    <!-- MathJax for rendering LaTeX equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- D3.js libraries for the Voronoi background -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/d3-delaunay@6"></script>
+
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e0f7fa;
+            font-family: 'Georgia', serif; /* Classic academic font */
             color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
-        .app-container {
-            background-color: white;
+
+        /* The canvas for the generative background */
+        #voronoi-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; /* Keeps it behind the text */
+            background-color: #f8f9fa;
+        }
+
+        /* Container for the actual website content */
+        .content-wrapper {
+            max-width: 800px;
+            margin: 60px auto;
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
+            background: rgba(255, 255, 255, 0.92); /* Slightly transparent white */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
+
+        h1, h2, h3 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+        }
+
         h1 {
-            color: #00796b;
-            margin-top: 0;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
         }
-        #question {
-            font-size: 24px;
+
+        nav {
+            margin-bottom: 30px;
+        }
+
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #2980b9;
             font-weight: bold;
-            margin: 20px 0;
         }
-        input[type="number"] {
-            padding: 10px;
-            font-size: 18px;
-            width: 100px;
-            text-align: center;
-            border: 2px solid #ccc;
-            border-radius: 6px;
+
+        nav a:hover {
+            text-decoration: underline;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #00796b;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-left: 10px;
-            transition: background 0.3s;
-        }
-        button:hover {
-            background-color: #004d40;
-        }
-        #feedback {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            min-height: 24px;
+
+        .research-item {
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="app-container">
-        <h1>Math Master Quiz</h1>
-        <p>Solve the problem below:</p>
-        <div id="question">Loading...</div>
-        
-        <input type="number" id="answerInput" placeholder="?" autocomplete="off">
-        <button onclick="checkAnswer()">Submit</button>
+    <!-- Generative Background -->
+    <canvas id="voronoi-canvas"></canvas>
 
-        <div id="feedback"></div>
+    <!-- Main Website Content -->
+    <div class="content-wrapper">
+        <header>
+            <h1>[Your First Name] Patro</h1>
+            <p><strong>M.Sc. Student in Mathematics</strong></p>
+        </header>
+
+        <nav>
+            <a href="#about">About</a>
+            <a href="#research">Research</a>
+            <a href="#cv">CV</a>
+        </nav>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Welcome to my academic webpage. I am a mathematics student with a focus on pure mathematics. My current work involves algebraic structures, and I enjoy exploring mathematical visualizations.</p>
+        </section>
+
+        <section id="research">
+            <h2>Research Interests</h2>
+            <ul>
+                <li>Coxeter Groups and their combinatorial aspects</li>
+                <li>Simple Groups of Lie Type</li>
+                <li>Geometric Invariant Theory</li>
+                <li>Word Maps on Groups</li>
+            </ul>
+
+            <div class="research-item">
+                <h3>Example LaTeX Integration</h3>
+                <p>Because MathJax is integrated, you can write inline equations like \( E = mc^2 \) or display equations for your thesis notes:</p>
+                $$ \det(A - \lambda I) = 0 $$
+            </div>
+        </section>
     </div>
 
+    <!-- Script to animate the Voronoi Diagram -->
     <script>
-        let num1, num2, correctAnswer;
+        const canvas = document.getElementById('voronoi-canvas');
+        const context = canvas.getContext('2d');
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+        window.addEventListener('resize', resize);
+        resize();
 
-        // Function to generate a new math problem
-        function generateProblem() {
-            num1 = Math.floor(Math.random() * 20) + 1; // Random number 1-20
-            num2 = Math.floor(Math.random() * 20) + 1; // Random number 1-20
-            correctAnswer = num1 + num2;
+        const numPoints = 80;
+        const points = Array.from({length: numPoints}, () => [Math.random() * width, Math.random() * height]);
+        const velocities = Array.from({length: numPoints}, () => [(Math.random() - 0.5) * 0.8, (Math.random() - 0.5) * 0.8]);
+
+        function update() {
+            for (let i = 0; i < numPoints; i++) {
+                points[i][0] += velocities[i][0];
+                points[i][1] += velocities[i][1];
+                
+                // Bounce off edges
+                if (points[i][0] <= 0 || points[i][0] >= width) velocities[i][0] *= -1;
+                if (points[i][1] <= 0 || points[i][1] >= height) velocities[i][1] *= -1;
+            }
             
-            document.getElementById("question").innerText = `${num1} + ${num2} = ?`;
-            document.getElementById("answerInput").value = ''; // Clear input
-            document.getElementById("feedback").innerText = ''; // Clear feedback
-            document.getElementById("answerInput").focus();
+            const delaunay = d3.Delaunay.from(points);
+            const voronoi = delaunay.voronoi([0, 0, width, height]);
+
+            context.clearRect(0, 0, width, height);
+            context.strokeStyle = 'rgba(44, 62, 80, 0.15)'; // Subtle academic blue-grey
+            context.lineWidth = 1;
+            
+            context.beginPath();
+            voronoi.render(context);
+            context.stroke();
+            
+            requestAnimationFrame(update);
         }
-
-        // Function to check the user's answer
-        function checkAnswer() {
-            const userAnswer = parseInt(document.getElementById("answerInput").value);
-            const feedbackElement = document.getElementById("feedback");
-
-            if (isNaN(userAnswer)) {
-                feedbackElement.innerText = "Please enter a valid number!";
-                feedbackElement.style.color = "orange";
-                return;
-            }
-
-            if (userAnswer === correctAnswer) {
-                feedbackElement.innerText = "Correct! Great job! 🎉";
-                feedbackElement.style.color = "green";
-                setTimeout(generateProblem, 1500); // Load next question after 1.5s
-            } else {
-                feedbackElement.innerText = "Not quite. Try again! ❌";
-                feedbackElement.style.color = "red";
-            }
-        }
-
-        // Allow pressing "Enter" to submit
-        document.getElementById("answerInput").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                checkAnswer();
-            }
-        });
-
-        // Initialize the first problem when the page loads
-        window.onload = generateProblem;
+        update();
     </script>
 </body>
 </html>
