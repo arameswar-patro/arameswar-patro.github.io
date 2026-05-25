@@ -3,532 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Rameswar Patro</title>
+    <title>Academic Portfolio</title>
     
     <!-- MathJax for rendering LaTeX equations -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- D3.js libraries for the Voronoi background -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/d3-delaunay@6"></script>
 
     <style>
-        /* --- Root Variables & Reset --- */
-        :root {
-            --bg-color: #050509; /* Deep space dark */
-            --text-primary: #e0e6ed;
-            --accent-primary: #00f2fe; /* Electric Neon Blue */
-            --accent-secondary: #4facfe; /* Deeper Blue */
-            --card-bg: rgba(20, 20, 35, 0.7); /* Translucent card */
-            --border-color: rgba(79, 172, 254, 0.3);
-            --font-main: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            --font-mono: 'Fira Code', 'Courier New', monospace;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; cursor: default; }
-
         body {
-            font-family: var(--font-main);
-            background-color: var(--bg-color);
-            color: var(--text-primary);
+            font-family: 'Georgia', serif; /* Classic academic font */
+            color: #333;
+            margin: 0;
+            padding: 0;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* --- Interactive Background Canvas --- */
-        #math-canvas {
+        /* The canvas for the generative background */
+        #voronoi-canvas {
             position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: -1;
-            opacity: 0.6;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; /* Keeps it behind the text */
+            background-color: #f8f9fa;
         }
 
-        /* --- Custom Scrollbar --- */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-color); }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-primary);
-            border-radius: 4px;
+        /* Container for the actual website content */
+        .content-wrapper {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.92); /* Slightly transparent white */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        /* --- Main Layout --- */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
+        h1, h2, h3 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
         }
 
-        /* --- Header / Navigation --- */
-        header {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            background: rgba(5, 5, 9, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            border-bottom: 1px solid var(--border-color);
+        h1 {
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
         }
 
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .logo {
-            font-family: var(--font-mono);
-            font-weight: bold;
-            font-size: 1.4rem;
-            color: var(--accent-primary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .logo:hover {
-            text-shadow: 0 0 10px var(--accent-primary);
-        }
-
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-        .nav-links a:hover { color: var(--accent-primary); }
-
-        /* --- Hero Section --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding-top: 70px;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            line-height: 1.1;
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            max-width: 600px;
             margin-bottom: 30px;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: transparent;
-            border: 2px solid var(--accent-primary);
-            color: var(--accent-primary);
+        nav a {
+            margin-right: 15px;
             text-decoration: none;
+            color: #2980b9;
             font-weight: bold;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            font-family: var(--font-mono);
         }
 
-        .btn:hover {
-            background: var(--accent-primary);
-            color: var(--bg-color);
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+        nav a:hover {
+            text-decoration: underline;
         }
 
-        /* --- Content Sections --- */
-        section {
-            padding: 100px 0;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-        
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            color: var(--text-primary);
-            display: inline-block;
-            border-bottom: 2px solid var(--accent-primary);
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 12px;
-            backdrop-filter: blur(5px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 30px;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.2);
-            border-color: var(--accent-primary);
-        }
-
-        .research-list ul {
-            list-style: none;
-            margin-left: 10px;
-        }
-
-        .research-list li {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .research-list li::before {
-            content: "▹"; /* Cyber style bullet */
-            position: absolute;
-            left: 0;
-            color: var(--accent-primary);
-        }
-
-        /* --- INTERACTIVE MATH TOOL: 2x2 Matrix Calculator --- */
-        #tool-section {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-        
-        .matrix-container {
-            display: grid;
-            grid-template-columns: repeat(2, 60px);
-            grid-gap: 10px;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            position: relative;
-        }
-        
-        /* The traditional matrix [ ] brackets */
-        .matrix-container::before, .matrix-container::after {
-            content: '';
-            position: absolute;
-            top: 0; bottom: 0;
-            width: 10px;
-            border: 2px solid var(--accent-primary);
-        }
-        .matrix-container::before { left: 0; border-right: none; }
-        .matrix-container::after { right: 0; border-left: none; }
-
-        .matrix-input {
-            width: 60px; height: 60px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            color: var(--accent-primary);
-            font-size: 1.5rem;
-            text-align: center;
-            border-radius: 4px;
-            font-family: var(--font-mono);
-        }
-        .matrix-input:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            background: rgba(0, 242, 254, 0.1);
-        }
-
-        #calc-result {
-            font-size: 1.2rem;
-            font-family: var(--font-mono);
-            margin-left: 20px;
-        }
-        
-        #result-value { color: var(--accent-primary); font-weight: bold; }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        /* --- EASTER EGG ELEMENTS (Hidden by default) --- */
-        #konami-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            color: #0f0; /* Classic Matrix Green */
-            font-family: 'Courier New', monospace;
-            display: none; /* Hidden */
-            justify-content: center; align-items: center;
-            z-index: 2000;
-            font-size: 2rem;
-            text-shadow: 0 0 10px #0f0;
+        .research-item {
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Interactive Network Background Canvas -->
-    <canvas id="math-canvas"></canvas>
-    
-    <!-- Konami Code Easter Egg Overlay -->
-    <div id="konami-overlay">MATRIX PROTOCOL ENGAGED... \( \aleph_0 \)</div>
+    <!-- Generative Background -->
+    <canvas id="voronoi-canvas"></canvas>
 
-    <!-- Header / Navbar -->
-    <header>
+    <!-- Main Website Content -->
+    <div class="content-wrapper">
+        <header>
+            <h1>[Your First Name] Patro</h1>
+            <p><strong>M.Sc. Student in Mathematics</strong></p>
+        </header>
+
         <nav>
-            <ul class="nav-links">
-                <li><a href="#about">// About</a></li>
-                <li><a href="#research">// Research</a></li>
-                <li><a href="#tools">// Tools</a></li>
-            </ul>
+            <a href="#about">About</a>
+            <a href="#research">Research</a>
+            <a href="#cv">CV</a>
         </nav>
-    </header>
 
-    <!-- Main Content Container -->
-    <div class="container">
-
-        <!-- Hero Section -->
-        <section id="hero" class="hero visible">
-            <h1>A Rameswar Patro</h1>
-        </section>
-
-        <!-- About Section -->
         <section id="about">
             <h2>About Me</h2>
-            <div class="card">
-                <p>I exist. </p>
-            </div>
+            <p>Welcome to my academic webpage. I am a mathematics student with a focus on pure mathematics. My current work involves algebraic structures, and I enjoy exploring mathematical visualizations.</p>
         </section>
 
-        <!-- Research Section -->
         <section id="research">
             <h2>Research Interests</h2>
-            <div class="card research-list">
-                <ul>
-                    <li>Coxeter Groups and their combinatorial aspects</li>
-                    <li>Simple Groups of Lie Type</li>
-                    <li id="secret-trigger">Geometric Invariant Theory <span style="opacity:0.3; font-size:0.8rem;">?</span></li>
-                    <li>Word Maps on Groups</li>    
-                </ul>
+            <ul>
+                <li>Coxeter Groups and their combinatorial aspects</li>
+                <li>Simple Groups of Lie Type</li>
+                <li>Geometric Invariant Theory</li>
+                <li>Word Maps on Groups</li>
+            </ul>
+
+            <div class="research-item">
+                <h3>Example LaTeX Integration</h3>
+                <p>Because MathJax is integrated, you can write inline equations like \( E = mc^2 \) or display equations for your thesis notes:</p>
+                $$ \det(A - \lambda I) = 0 $$
             </div>
-        
+        </section>
+    </div>
 
-    </div> <!-- End container -->
-
-    <footer>
-        <p>Maths and Chill!!</p>
-    </footer>
-
-    <!-- --- JAVASCRIPT: Logic, Interactions & Easter Eggs --- -->
+    <!-- Script to animate the Voronoi Diagram -->
     <script>
-        // --- 1. Background Animation: Interactive Node Network ---
-        const canvas = document.getElementById('math-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height, particles;
-
-        // Configuration
-        const particleCount = 100;
-        const connectionDistance = 150;
-        const mouseRadius = 150;
-        let mouse = { x: null, y: null };
-
-        // Handle Resize
+        const canvas = document.getElementById('voronoi-canvas');
+        const context = canvas.getContext('2d');
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        
         function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
         }
         window.addEventListener('resize', resize);
         resize();
 
-        // Track Mouse
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.x;
-            mouse.y = e.y;
-        });
-        window.addEventListener('mouseout', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
+        const numPoints = 80;
+        const points = Array.from({length: numPoints}, () => [Math.random() * width, Math.random() * height]);
+        const velocities = Array.from({length: numPoints}, () => [(Math.random() - 0.5) * 0.8, (Math.random() - 0.5) * 0.8]);
 
-        // Particle Class
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.5; // slow speed
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * 2 + 1;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
+        function update() {
+            for (let i = 0; i < numPoints; i++) {
+                points[i][0] += velocities[i][0];
+                points[i][1] += velocities[i][1];
+                
                 // Bounce off edges
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-
-                // Mouse interaction (repulsion)
-                if (mouse.x != null && mouse.y != null) {
-                    let dx = this.x - mouse.x;
-                    let dy = this.y - mouse.y;
-                    let dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < mouseRadius) {
-                        let force = (mouseRadius - dist) / mouseRadius;
-                        this.x += dx/dist * force * 2;
-                        this.y += dy/dist * force * 2;
-                    }
-                }
+                if (points[i][0] <= 0 || points[i][0] >= width) velocities[i][0] *= -1;
+                if (points[i][1] <= 0 || points[i][1] >= height) velocities[i][1] *= -1;
             }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 242, 254, 0.7)'; // Neon blue
-                ctx.fill();
-            }
-        }
-
-        // Initialize Particles
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        // Animation Loop
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
             
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
+            const delaunay = d3.Delaunay.from(points);
+            const voronoi = delaunay.voronoi([0, 0, width, height]);
 
-                // Draw Connections (Lines)
-                for (let j = i + 1; j < particles.length; j++) {
-                    let dx = particles[i].x - particles[j].x;
-                    let dy = particles[i].y - particles[j].y;
-                    let dist = Math.sqrt(dx*dx + dy*dy);
-
-                    if (dist < connectionDistance) {
-                        // Opacity fades as distance increases
-                        let opacity = 1 - (dist / connectionDistance);
-                        ctx.strokeStyle = `rgba(79, 172, 254, ${opacity * 0.5})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-
-        initParticles();
-        animate();
-
-
-        // --- 2. Scroll Animation (Fade-in sections) ---
-        const sections = document.querySelectorAll('section');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 }); // Trigger when 10% visible
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-
-
-        // --- 3. Interactive Tool Logic (Matrix Determinant) ---
-        const inputs = document.querySelectorAll('.matrix-input');
-        const resultVal = document.getElementById('result-value');
-
-        function calculateDeterminant() {
-            const a = parseInt(document.getElementById('m11').value) || 0;
-            const b = parseInt(document.getElementById('m12').value) || 0;
-            const c = parseInt(document.getElementById('m21').value) || 0;
-            const d = parseInt(document.getElementById('m22').value) || 0;
-
-            const det = (a * d) - (b * c);
-            resultVal.innerText = det;
+            context.clearRect(0, 0, width, height);
+            context.strokeStyle = 'rgba(44, 62, 80, 0.15)'; // Subtle academic blue-grey
+            context.lineWidth = 1;
             
-            // Interaction: Change result color based on singularity
-            if (det === 0) {
-                resultVal.style.color = '#ff6b6b'; // Red for singular
-                resultVal.title = "Singular Matrix detected.";
-            } else {
-                resultVal.style.color = 'var(--accent-primary)';
-                resultVal.title = "";
-            }
+            context.beginPath();
+            voronoi.render(context);
+            context.stroke();
+            
+            requestAnimationFrame(update);
         }
-
-        inputs.forEach(input => {
-            input.addEventListener('input', calculateDeterminant);
-        });
-
-
-        // --- 4. Fun Easter Eggs ---
-
-        // Egg 1: The Konami Code (Up Up Down Down Left Right Left Right B A)
-        // Triggers Matrix mode.
-        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-        let konamiIndex = 0;
-        const overlay = document.getElementById('konami-overlay');
-
-        window.addEventListener('keydown', (e) => {
-            if (e.key === konamiCode[konamiIndex]) {
-                konamiIndex++;
-                if (konamiIndex === konamiCode.length) {
-                    // Activate Egg!
-                    overlay.style.display = 'flex';
-                    // Hide after 3 seconds
-                    setTimeout(() => {
-                        overlay.style.display = 'none';
-                        konamiIndex = 0;
-                    }, 3000);
-                }
-            } else {
-                konamiIndex = 0; // Reset on wrong key
-            }
-        });
-
-        // Egg 2: Secret Click on a specific research item
-        const secretTrigger = document.getElementById('secret-trigger');
-        let clickCount = 0;
-        secretTrigger.addEventListener('click', () => {
-            clickCount++;
-            if (clickCount === 5) {
-                // Change the main accent color to neon green temporarily
-                document.documentElement.style.setProperty('--accent-primary', '#0f0');
-                secretTrigger.innerHTML = "GIT Status: UNSTABLE. \( \zeta(3) \)";
-                alert("Security protocol bypassed. Main terminal accent color shifted.");
-                setTimeout(() => {
-                    // Reset back to blue after 10 seconds
-                    document.documentElement.style.setProperty('--accent-primary', '#00f2fe');
-                    secretTrigger.innerHTML = 'Geometric Invariant Theory (GIT) <span style="opacity:0.3; font-size:0.8rem;">?</span>';
-                    clickCount = 0;
-                }, 10000);
-            }
-        });
-
+        update();
     </script>
 </body>
 </html>
