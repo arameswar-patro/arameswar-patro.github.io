@@ -337,9 +337,11 @@
         window.addEventListener('resize', resize);
         resize();
 
-        const numPoints = 80;
+        // Slightly fewer points (60 instead of 80) can make the geometry stand out more cleanly
+        const numPoints = 60;
         const points = Array.from({length: numPoints}, () => [Math.random() * width, Math.random() * height]);
-        const velocities = Array.from({length: numPoints}, () => [(Math.random() - 0.5) * 0.8, (Math.random() - 0.5) * 0.8]);
+        // Slowed down the velocities just a bit for a calmer background effect
+        const velocities = Array.from({length: numPoints}, () => [(Math.random() - 0.5) * 0.5, (Math.random() - 0.5) * 0.5]);
 
         function update() {
             for (let i = 0; i < numPoints; i++) {
@@ -355,12 +357,30 @@
             const voronoi = delaunay.voronoi([0, 0, width, height]);
 
             context.clearRect(0, 0, width, height);
-            context.strokeStyle = 'rgba(44, 62, 80, 0.15)'; // Subtle academic blue-grey
-            context.lineWidth = 1;
+
+            // 1. Add subtle background fills to the cells to give the diagram depth
+            for (let i = 0; i < numPoints; i++) {
+                context.beginPath();
+                voronoi.renderCell(i, context);
+                // Cycle through a few very faint opacities of your blue accent color
+                const opacity = 0.01 + (i % 5) * 0.01;
+                context.fillStyle = `rgba(41, 128, 185, ${opacity})`;
+                context.fill();
+            }
+
+            // 2. Make the structural edges more visible
+            context.strokeStyle = 'rgba(44, 62, 80, 0.25)'; // Opacity bumped from 0.15 to 0.25
+            context.lineWidth = 1.2; // Slightly thicker lines
             
             context.beginPath();
             voronoi.render(context);
             context.stroke();
+
+            // 3. Render the actual generating points for a nice technical aesthetic
+            context.fillStyle = 'rgba(44, 62, 80, 0.3)';
+            context.beginPath();
+            delaunay.renderPoints(context, 1.5); // 1.5px radius dots
+            context.fill();
             
             requestAnimationFrame(update);
         }
