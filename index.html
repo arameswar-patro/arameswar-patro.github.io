@@ -56,10 +56,37 @@
             margin-top: 1.5em;
         }
 
-        h1 {
+        /* Header Layout for Photo */
+        header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
             border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 10px;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .profile-photo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            flex-shrink: 0; /* Prevents the photo from squishing */
+        }
+
+        .header-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .header-text h1 {
+            border-bottom: none;
+            padding-bottom: 0;
             margin-top: 0;
+            margin-bottom: 5px;
             font-size: 2.5rem;
         }
 
@@ -173,9 +200,13 @@
 
     <div class="content-wrapper">
         <header>
-            <h1>A Rameswar Patro</h1>
-            <p style="font-size: 1.2rem; color: #555; margin-bottom: 5px;"><strong>Integrated M.Sc. Student in Mathematics</strong></p>
-            <p style="margin-top: 0; font-family: 'Segoe UI', sans-serif;">National Institute of Science Education and Research (NISER)</p>
+            <img src="photo.jpeg" alt="A Rameswar Patro" class="profile-photo">
+            
+            <div class="header-text">
+                <h1>A Rameswar Patro</h1>
+                <p style="font-size: 1.2rem; color: #555; margin-bottom: 5px;"><strong>Integrated M.Sc. Student in Mathematics</strong></p>
+                <p style="margin-top: 0; font-family: 'Segoe UI', sans-serif;">National Institute of Science Education and Research (NISER)</p>
+            </div>
         </header>
 
         <nav>
@@ -226,7 +257,8 @@
         <section id="preprints">
             <h2>Preprints & Publications</h2>
             <div class="project-card">
-                <a href="https://arxiv.org/abs/2605.22065" class="preprint-link">Symmetries and rigidities of star shaped coxeter groups</a>
+                <a href="#" class="preprint-link">Symmetries and rigidities of star shaped coxeter groups</a>
+                <p><em>Authors/Details to be updated. Click the link above to view the preprint.</em></p>
             </div>
         </section>
 
@@ -275,7 +307,7 @@
             <ul>
                 <li><strong>GATE Mathematics:</strong> AIR 37 (2026)</li>
                 <li><strong>CSIR-NET JRF:</strong> AIR JRF-34 (2025)</li>
-                <li><strong>NBHM Doctoral Scholarship:</strong> Selected (2026)</li>
+                <li><strong>NBHM Master's and Doctoral Scholarship:</strong> Selected (2025)</li>
                 <li><strong>Mimamsa Competition:</strong> Zonal Topper (2024)</li>
                 <li><strong>Abhiprajna Competition:</strong> Second Place (2025)</li>
                 <li><strong>Academic Excellence Award:</strong> Highest SGPA (2023, 2024, 2025)</li>
@@ -285,7 +317,7 @@
 
         <section id="contact" class="contact-info">
             <h2>Contact</h2>
-            <p>Email: <a href="mailto:arameswar.patro.math@gmail.com" style="color: var(--accent-color);">arameswar.patro.math@gmail.com</a> | Phone: +91 76840 83583</p>
+            <p>Email: <a href="mailto:arameswar.patro@niser.ac.in" style="color: var(--accent-color);">arameswar.patro@niser.ac.in</a> | Phone: +91 76840 83583</p>
             <p>Room 301, Bhagirathi Hostel, NISER, Jatni, Odisha</p>
         </section>
     </div>
