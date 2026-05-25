@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Portfolio - A Rameswar Patro</title>
+    <title>A Rameswar Patro | Academic Portfolio</title>
     
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -12,9 +12,16 @@
     <script src="https://unpkg.com/d3-delaunay@6"></script>
 
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #2980b9;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+        }
+
         body {
-            font-family: 'Georgia', serif; 
-            color: #333;
+            font-family: 'Georgia', serif;
+            color: var(--text-color);
             margin: 0;
             padding: 0;
             overflow-x: hidden;
@@ -28,58 +35,121 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1; 
-            background-color: #f8f9fa;
+            z-index: -1;
+            background-color: var(--bg-color);
         }
 
         /* Container for the actual website content */
         .content-wrapper {
-            max-width: 850px;
+            max-width: 900px;
             margin: 60px auto;
-            padding: 40px 50px;
-            background: rgba(255, 255, 255, 0.95); 
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            backdrop-filter: blur(5px);
         }
 
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #2c3e50;
+            color: var(--primary-color);
+            margin-top: 1.5em;
         }
 
         h1 {
-            border-bottom: 2px solid #2c3e50;
+            border-bottom: 3px solid var(--primary-color);
             padding-bottom: 10px;
-            margin-bottom: 5px;
+            margin-top: 0;
+            font-size: 2.5rem;
         }
 
-        header p {
-            margin-top: 0;
-            font-size: 1.1em;
-            color: #555;
+        h2 {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+            color: var(--accent-color);
         }
 
         nav {
             margin-bottom: 40px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #ddd;
+            background: #eee;
+            padding: 15px 20px;
+            border-radius: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         nav a {
-            margin-right: 20px;
             text-decoration: none;
-            color: #2980b9;
-            font-weight: bold;
+            color: var(--primary-color);
             font-family: 'Segoe UI', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
         }
 
         nav a:hover {
-            text-decoration: underline;
-            color: #1c5980;
+            color: var(--accent-color);
         }
 
-        section {
-            margin-bottom: 40px;
+        .tag {
+            display: inline-block;
+            background: #e8f4f8;
+            color: var(--accent-color);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0 5px 10px 0;
+        }
+
+        .project-card, .education-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover, .education-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+        }
+
+        .project-card h3, .education-card h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .meta-info {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .preprint-link {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        
+        .preprint-link:hover {
+            text-decoration: underline;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid var(--primary-color);
+            text-align: center;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         ul {
@@ -89,26 +159,11 @@
         li {
             margin-bottom: 8px;
         }
-
-        .research-item {
-            margin-bottom: 25px;
-        }
-
-        .research-item h3 {
-            margin-bottom: 5px;
-            color: #34495e;
-        }
-
-        .research-item p {
-            margin-top: 0;
-        }
         
-        .meta-info {
-            font-size: 0.9em;
-            color: #666;
-            font-style: italic;
-            margin-bottom: 10px;
-            display: block;
+        .two-col-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
     </style>
 </head>
@@ -119,75 +174,120 @@
     <div class="content-wrapper">
         <header>
             <h1>A Rameswar Patro</h1>
-            <p><strong>Integrated M.Sc. Student in Mathematics</strong></p>
+            <p style="font-size: 1.2rem; color: #555; margin-bottom: 5px;"><strong>Integrated M.Sc. Student in Mathematics</strong></p>
+            <p style="margin-top: 0; font-family: 'Segoe UI', sans-serif;">National Institute of Science Education and Research (NISER)</p>
         </header>
 
         <nav>
-            <a href="#about">About</a>
-            <a href="#publications">Publications</a>
-            <a href="#research">Research</a>
+            <a href="#education">Education</a>
+            <a href="#research">Interests & Coursework</a>
+            <a href="#preprints">Preprints</a>
+            <a href="#projects">Research Projects</a>
             <a href="#awards">Awards</a>
         </nav>
 
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Welcome to my academic webpage. I am a final-year Integrated M.Sc. student in Mathematics, with a minor in Computer Science, at the National Institute of Science Education and Research (NISER), Bhubaneswar[cite: 5, 6]. I am currently working on my Master's thesis focusing on Simple Groups of Lie Type, under the supervision of Dr. Tushar Kanta Naik[cite: 8].</p>
-        </section>
-
-        <section id="publications">
-            <h2>Preprints</h2>
-            <ul>
-                <li><strong>Symmetries and rigidity of star shaped Coxeter groups.</strong> A Rameswar Patro. <em>arXiv preprint</em>.</li>
-            </ul>
+        <section id="education">
+            <h2>Education</h2>
+            <div class="education-card">
+                <h3>Integrated M.Sc. in Mathematics</h3>
+                <div class="meta-info"><strong>NISER, Bhubaneswar</strong> | 2021 – 2026 (Expected)</div>
+                <ul>
+                    <li><strong>Minor:</strong> Computer Science</li>
+                    <li><strong>CGPA:</strong> 9.39/10.00 (up to 9th semester)</li>
+                    <li><strong>M.Sc. Thesis:</strong> In Progress (Currently reading Simple Groups of Lie Type) | <em>Advisor: Dr. Tushar Kanta Naik</em></li>
+                </ul>
+            </div>
+            <div class="education-card">
+                <h3>Previous Education</h3>
+                <ul>
+                    <li><strong>AISSCE (Class XII), CBSE</strong> - DAV Public School, Bhubaneswar (96.2%)</li>
+                    <li><strong>AISSE (Class X), CBSE</strong> - Sankalp Senior Secondary School, Ralaba, Berhampur (94.6%)</li>
+                </ul>
+            </div>
         </section>
 
         <section id="research">
             <h2>Research Interests</h2>
-            <p>My primary research interests lie in the fields of algebra and geometry, specifically:</p>
-            <ul>
-                <li>Coxeter Groups and their combinatorial aspects [cite: 16, 47]</li>
-                <li>Simple Groups of Lie Type [cite: 8]</li>
-                <li>Geometric Invariant Theory [cite: 21]</li>
-                <li>Word Maps on Groups [cite: 33]</li>
-                <li>Group Rings and Algebraic Groups [cite: 16]</li>
-            </ul>
-
-            <h2>Selected Projects</h2>
+            <p><strong>Core Focus:</strong> Coxeter groups, Group Rings, Algebraic Groups</p>
             
-            <div class="research-item">
-                <h3>Word Maps on Groups [cite: 33]</h3>
-                <span class="meta-info">Advisor: Dr. Tushar Kanta Naik, NISER | Summer 2025 [cite: 34, 35, 37]</span>
-                <p>Investigated word maps across finite, profinite, and algebraic groups[cite: 36]. Examined Waring-type problems, power maps \( (x \mapsto x^M) \), and probabilistic aspects related to character theory[cite: 38].</p>
+            <h3 style="font-size: 1.1rem; margin-top: 20px;">Selected Advanced Coursework</h3>
+            <ul class="two-col-list">
+                <li>Advanced Linear Algebra</li>
+                <li>Lie Algebras</li>
+                <li>Commutative Algebra</li>
+                <li>Algebraic Geometry</li>
+                <li>Introduction to Manifolds</li>
+                <li>Representation Theory</li>
+                <li>Algorithmic Coding Theory</li>
+                <li>Parametrized Algorithms</li>
+            </ul>
+        </section>
+
+        <section id="preprints">
+            <h2>Preprints & Publications</h2>
+            <div class="project-card">
+                <a href="#" class="preprint-link">Symmetries and rigidities of star shaped coxeter groups</a>
+                <p><em>Authors/Details to be updated. Click the link above to view the preprint.</em></p>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Research Projects</h2>
+            
+            <div class="project-card">
+                <h3>Geometric Invariant Theory</h3>
+                <div class="meta-info"><strong>Advisor:</strong> Dr. Mahmut Levent Doğan | <strong>Institution:</strong> DRP, Turkey | <em>Summer 2025</em></div>
+                <ul>
+                    <li>Studied Hilbert's Finiteness Theorem, Matsushima's Criterion, Hilbert-Mumford Theorem, and Kempf-Ness Theorem.</li>
+                </ul>
             </div>
 
-            <div class="research-item">
-                <h3>Geometric Invariant Theory [cite: 21]</h3>
-                <span class="meta-info">Advisor: Dr. Mahmut Levent Doğan, DRP Turkiye | 2025-2026 [cite: 22, 27, 28]</span>
-                <p>Studied Hilbert's Finiteness Theorem, Matsushima's Criterion, Hilbert-Mumford Theorem, and the Kempf-Ness Theorem[cite: 32].</p>
+            <div class="project-card">
+                <h3>Word Maps on Groups</h3>
+                <div class="meta-info"><strong>Advisor:</strong> Dr. Tushar Kanta Naik | <strong>Institution:</strong> NISER | <em>Summer 2025</em></div>
+                <ul>
+                    <li>Investigated word maps across finite, profinite, and algebraic groups.</li>
+                    <li>Examined Waring-type problems, power maps (x &mapsto; x^M), and probabilistic aspects related to character theory.</li>
+                </ul>
             </div>
 
-            <div class="research-item">
-                <h3>Groups and Geometry [cite: 39]</h3>
-                <span class="meta-info">Advisor: Dr. Krishnendu Gongopadhyay, IISER Mohali | Summer 2024 [cite: 40, 41, 42]</span>
-                <p>Supported by the Indian Academy of Sciences Summer Research Fellowship[cite: 43]. Studied isometries of the Euclidean plane, Frieze and Discontinuous groups, and the structure of triangle groups[cite: 45]. Explored regular tilings and introductory hyperbolic geometry[cite: 46].</p>
+            <div class="project-card">
+                <h3>Groups and Geometry</h3>
+                <div class="meta-info"><strong>Advisor:</strong> Dr. Krishnendu Gongopadhyay | <strong>Institution:</strong> IISER Mohali | <em>Summer 2024</em></div>
+                <div class="tag">Supported by IAS Summer Research Fellowship</div>
+                <ul>
+                    <li>Studied isometries of the Euclidean plane, Frieze and Discontinuous groups, and the structure of triangle groups.</li>
+                    <li>Explored regular tilings and introductory hyperbolic geometry.</li>
+                </ul>
             </div>
 
-            <div class="research-item">
-                <h3>Combinatorial Aspects of Coxeter Groups [cite: 47]</h3>
-                <span class="meta-info">Advisor: Dr. Tushar Kanta Naik, NISER | Summer 2023 [cite: 48, 49, 50]</span>
-                <p>Explored reduced expressions, length functions, the strong exchange condition, and Bruhat order[cite: 51]. Constructed geometric realizations of Coxeter groups using root systems[cite: 52].</p>
+            <div class="project-card">
+                <h3>Combinatorial Aspects of Coxeter Groups</h3>
+                <div class="meta-info"><strong>Advisor:</strong> Dr. Tushar Kanta Naik | <strong>Institution:</strong> NISER | <em>Summer 2023</em></div>
+                <ul>
+                    <li>Explored reduced expressions, length functions, the strong exchange condition, and Bruhat order.</li>
+                    <li>Constructed geometric realizations of Coxeter groups using root systems.</li>
+                </ul>
             </div>
         </section>
 
         <section id="awards">
-            <h2>Selected Awards & Honors</h2>
+            <h2>Awards & Honors</h2>
             <ul>
-                <li>GATE Mathematics: AIR 37 (2026) [cite: 59]</li>
-                <li>NBHM Master's and Doctoral Scholarship (2025) [cite: 59]</li>
-                <li>CSIR-NET JRF: AIR JRF-34 (December 2025) [cite: 59]</li>
-                <li>Academic Excellence Award: Highest SGPA (2023, 2024, 2025) [cite: 59]</li>
-                <li>Mimamsa Competition: Zonal Topper (2024) [cite: 59]</li>
+                <li><strong>GATE Mathematics:</strong> AIR 37 (2026)</li>
+                <li><strong>CSIR-NET JRF:</strong> AIR JRF-34 (2025)</li>
+                <li><strong>NBHM Master's and Doctoral Scholarship:</strong> Selected (2025)</li>
+                <li><strong>Mimamsa Competition:</strong> Zonal Topper (2024)</li>
+                <li><strong>Abhiprajna Competition:</strong> Second Place (2025)</li>
+                <li><strong>Academic Excellence Award:</strong> Highest SGPA (2023, 2024, 2025)</li>
+                <li><strong>DAE DISHA Fellowship</strong> (2021-2026)</li>
             </ul>
+        </section>
+
+        <section id="contact" class="contact-info">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:arameswar.patro@niser.ac.in" style="color: var(--accent-color);">arameswar.patro@niser.ac.in</a> | Phone: +91 76840 83583</p>
+            <p>Room 301, Bhagirathi Hostel, NISER, Jatni, Odisha</p>
         </section>
     </div>
 
