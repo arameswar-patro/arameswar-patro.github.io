@@ -3,23 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Portfolio</title>
+    <title>A Rameswar Patro | Academic Portfolio</title>
     
-    <!-- MathJax for rendering LaTeX equations -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
-    <!-- D3.js libraries for the Voronoi background -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/d3-delaunay@6"></script>
 
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #2980b9;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+        }
+
         body {
-            font-family: 'Georgia', serif; /* Classic academic font */
-            color: #333;
+            font-family: 'Georgia', serif;
+            color: var(--text-color);
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         /* The canvas for the generative background */
@@ -29,85 +35,195 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1; /* Keeps it behind the text */
-            background-color: #f8f9fa;
+            z-index: -1;
+            background-color: var(--bg-color);
         }
 
         /* Container for the actual website content */
         .content-wrapper {
-            max-width: 800px;
+            max-width: 850px;
             margin: 60px auto;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.92); /* Slightly transparent white */
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            backdrop-filter: blur(5px);
         }
 
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #2c3e50;
+            color: var(--primary-color);
+            margin-top: 1.5em;
         }
 
         h1 {
-            border-bottom: 2px solid #2c3e50;
+            border-bottom: 3px solid var(--primary-color);
             padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+            color: var(--accent-color);
         }
 
         nav {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            background: #eee;
+            padding: 15px 20px;
+            border-radius: 6px;
         }
 
         nav a {
-            margin-right: 15px;
+            margin-right: 25px;
             text-decoration: none;
-            color: #2980b9;
-            font-weight: bold;
+            color: var(--primary-color);
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
         }
 
         nav a:hover {
-            text-decoration: underline;
+            color: var(--accent-color);
         }
 
-        .research-item {
+        .tag {
+            display: inline-block;
+            background: #e8f4f8;
+            color: var(--accent-color);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0 5px 10px 0;
+        }
+
+        .project-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 8px;
             margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid var(--primary-color);
+            text-align: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Generative Background -->
     <canvas id="voronoi-canvas"></canvas>
 
-    <!-- Main Website Content -->
     <div class="content-wrapper">
         <header>
             <h1>A Rameswar Patro</h1>
-            <p><strong>Integrated M.Sc. Student in Mathematics</strong></p>
+            <p style="font-size: 1.2rem; color: #555;"><strong>Integrated M.Sc. Student in Mathematics</strong></p>
         </header>
 
         <nav>
             <a href="#about">About</a>
+            <a href="#education">Education</a>
             <a href="#research">Research</a>
+            <a href="#projects">Projects & Notes</a>
             <a href="#cv">CV</a>
         </nav>
 
         <section id="about">
             <h2>About Me</h2>
-            <p>Welcome to my academic webpage. I am a mathematics student with a focus on algebra.</p>
+            <p>Welcome to my academic webpage. I am a mathematics student with a deep focus on abstract algebra, representation theory, and algebraic geometry. I am highly motivated by the interplay between combinatorics, geometry, and group theory.</p>
+            <p>My current studies primarily revolve around understanding the structural properties of algebraic groups and their invariants. I am currently preparing for doctoral studies where I hope to further investigate these areas.</p>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <ul>
+                <li>
+                    <strong>Integrated M.Sc. in Mathematics</strong> (Expected 2026)<br>
+                    <em>National Institute of Science Education and Research (NISER), Bhubaneswar</em><br>
+                    Relevant Coursework: Abstract Algebra, Lie Algebras, Algebraic Topology, Differential Geometry, Measure Theory, Algebraic Geometry.
+                </li>
+            </ul>
         </section>
 
         <section id="research">
             <h2>Research Interests</h2>
+            <p>My core mathematical interests lie in the following domains:</p>
             <ul>
-                <li>Coxeter Groups and their combinatorial aspects</li>
-                <li>Simple Groups of Lie Type</li>
-                <li>Geometric Invariant Theory</li>
-                <li>Word Maps on Groups</li>
+                <li><strong>Coxeter Groups:</strong> Exploring their combinatorial aspects, Bruhat order, and applications to representation theory.</li>
+                <li><strong>Simple Groups of Lie Type:</strong> Studying their structural properties, root systems, and representations over finite fields.</li>
+                <li><strong>Geometric Invariant Theory:</strong> Understanding quotients of algebraic varieties by group actions and stability conditions.</li>
+                <li><strong>Word Maps on Groups:</strong> Investigating the image and fibers of word maps on finite simple groups and algebraic groups.</li>
             </ul>
+        </section>
+
+        <section id="projects">
+            <h2>Selected Projects & Seminar Talks</h2>
+            
+            <div class="project-card">
+                <h3>An Introduction to Coxeter Groups and Reflection Groups</h3>
+                <div>
+                    <span class="tag">Combinatorics</span>
+                    <span class="tag">Group Theory</span>
+                </div>
+                <p>A comprehensive reading project focusing on the geometric realization of Coxeter groups as reflection groups. The project covers root systems, the exchange condition, and the classification of finite Coxeter groups.</p>
+            </div>
+
+            <div class="project-card">
+                <h3>Word Maps on Finite Simple Groups</h3>
+                <div>
+                    <span class="tag">Algebra</span>
+                    <span class="tag">Waring's Problem</span>
+                </div>
+                <p>An exploratory study on the surjectivity of word maps for specific families of finite simple groups, heavily relying on character theory and probabilistic methods. Explored classical results like the Ore conjecture.</p>
+            </div>
+
+            <div class="project-card">
+                <h3>Fundamentals of Geometric Invariant Theory (GIT)</h3>
+                <div>
+                    <span class="tag">Algebraic Geometry</span>
+                </div>
+                <p>Seminar talk summarizing the foundational concepts of Mumford's GIT, specifically focusing on affine and projective quotients, and the Hilbert-Mumford criterion for stability.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-info">
+            <h2>Contact</h2>
+            <p>Email: rameswar.patro [at] niser [dot] ac [dot] in</p>
+            <p>Location: Jatni, Odisha, India</p>
+            <p><a href="#" style="color: #2980b9; text-decoration: none; font-weight: bold;">Download Full Curriculum Vitae (PDF)</a></p>
         </section>
     </div>
 
-    <!-- Script to animate the Voronoi Diagram -->
     <script>
         const canvas = document.getElementById('voronoi-canvas');
         const context = canvas.getContext('2d');
