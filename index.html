@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Rameswar Patro | Academic Portfolio</title>
+    <title>Academic Portfolio - A Rameswar Patro</title>
     
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -12,16 +12,9 @@
     <script src="https://unpkg.com/d3-delaunay@6"></script>
 
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --accent-color: #2980b9;
-            --bg-color: #f8f9fa;
-            --text-color: #333;
-        }
-
         body {
-            font-family: 'Georgia', serif;
-            color: var(--text-color);
+            font-family: 'Georgia', serif; 
+            color: #333;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
@@ -35,100 +28,58 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1;
-            background-color: var(--bg-color);
+            z-index: -1; 
+            background-color: #f8f9fa;
         }
 
         /* Container for the actual website content */
         .content-wrapper {
             max-width: 850px;
             margin: 60px auto;
-            padding: 50px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-            backdrop-filter: blur(5px);
+            padding: 40px 50px;
+            background: rgba(255, 255, 255, 0.95); 
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        h1, h2, h3, h4 {
+        h1, h2, h3 {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--primary-color);
-            margin-top: 1.5em;
+            color: #2c3e50;
         }
 
         h1 {
-            border-bottom: 3px solid var(--primary-color);
+            border-bottom: 2px solid #2c3e50;
             padding-bottom: 10px;
-            margin-top: 0;
-            font-size: 2.5rem;
+            margin-bottom: 5px;
         }
 
-        h2 {
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 8px;
-            color: var(--accent-color);
+        header p {
+            margin-top: 0;
+            font-size: 1.1em;
+            color: #555;
         }
 
         nav {
             margin-bottom: 40px;
-            background: #eee;
-            padding: 15px 20px;
-            border-radius: 6px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
         }
 
         nav a {
-            margin-right: 25px;
+            margin-right: 20px;
             text-decoration: none;
-            color: var(--primary-color);
+            color: #2980b9;
+            font-weight: bold;
             font-family: 'Segoe UI', sans-serif;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-            transition: color 0.3s;
         }
 
         nav a:hover {
-            color: var(--accent-color);
+            text-decoration: underline;
+            color: #1c5980;
         }
 
-        .tag {
-            display: inline-block;
-            background: #e8f4f8;
-            color: var(--accent-color);
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0 5px 10px 0;
-        }
-
-        .project-card {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
-        }
-
-        .project-card h3 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-        }
-
-        .contact-info {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid var(--primary-color);
-            text-align: center;
-            font-family: 'Segoe UI', sans-serif;
+        section {
+            margin-bottom: 40px;
         }
 
         ul {
@@ -137,6 +88,27 @@
 
         li {
             margin-bottom: 8px;
+        }
+
+        .research-item {
+            margin-bottom: 25px;
+        }
+
+        .research-item h3 {
+            margin-bottom: 5px;
+            color: #34495e;
+        }
+
+        .research-item p {
+            margin-top: 0;
+        }
+        
+        .meta-info {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+            display: block;
         }
     </style>
 </head>
@@ -147,80 +119,75 @@
     <div class="content-wrapper">
         <header>
             <h1>A Rameswar Patro</h1>
-            <p style="font-size: 1.2rem; color: #555;"><strong>Integrated M.Sc. Student in Mathematics</strong></p>
+            <p><strong>Integrated M.Sc. Student in Mathematics</strong></p>
         </header>
 
         <nav>
             <a href="#about">About</a>
-            <a href="#education">Education</a>
+            <a href="#publications">Publications</a>
             <a href="#research">Research</a>
-            <a href="#projects">Projects & Notes</a>
-            <a href="#cv">CV</a>
+            <a href="#awards">Awards</a>
         </nav>
 
         <section id="about">
             <h2>About Me</h2>
-            <p>Welcome to my academic webpage. I am a mathematics student with a deep focus on abstract algebra, representation theory, and algebraic geometry. I am highly motivated by the interplay between combinatorics, geometry, and group theory.</p>
-            <p>My current studies primarily revolve around understanding the structural properties of algebraic groups and their invariants. I am currently preparing for doctoral studies where I hope to further investigate these areas.</p>
+            <p>Welcome to my academic webpage. I am a final-year Integrated M.Sc. student in Mathematics, with a minor in Computer Science, at the National Institute of Science Education and Research (NISER), Bhubaneswar[cite: 5, 6]. I am currently working on my Master's thesis focusing on Simple Groups of Lie Type, under the supervision of Dr. Tushar Kanta Naik[cite: 8].</p>
         </section>
 
-        <section id="education">
-            <h2>Education</h2>
+        <section id="publications">
+            <h2>Preprints</h2>
             <ul>
-                <li>
-                    <strong>Integrated M.Sc. in Mathematics</strong> (Expected 2026)<br>
-                    <em>National Institute of Science Education and Research (NISER), Bhubaneswar</em><br>
-                    Relevant Coursework: Abstract Algebra, Lie Algebras, Algebraic Topology, Differential Geometry, Measure Theory, Algebraic Geometry.
-                </li>
+                <li><strong>Symmetries and rigidity of star shaped Coxeter groups.</strong> A Rameswar Patro. <em>arXiv preprint</em>.</li>
             </ul>
         </section>
 
         <section id="research">
             <h2>Research Interests</h2>
-            <p>My core mathematical interests lie in the following domains:</p>
+            <p>My primary research interests lie in the fields of algebra and geometry, specifically:</p>
             <ul>
-                <li><strong>Coxeter Groups:</strong> Exploring their combinatorial aspects, Bruhat order, and applications to representation theory.</li>
-                <li><strong>Simple Groups of Lie Type:</strong> Studying their structural properties, root systems, and representations over finite fields.</li>
-                <li><strong>Geometric Invariant Theory:</strong> Understanding quotients of algebraic varieties by group actions and stability conditions.</li>
-                <li><strong>Word Maps on Groups:</strong> Investigating the image and fibers of word maps on finite simple groups and algebraic groups.</li>
+                <li>Coxeter Groups and their combinatorial aspects [cite: 16, 47]</li>
+                <li>Simple Groups of Lie Type [cite: 8]</li>
+                <li>Geometric Invariant Theory [cite: 21]</li>
+                <li>Word Maps on Groups [cite: 33]</li>
+                <li>Group Rings and Algebraic Groups [cite: 16]</li>
             </ul>
-        </section>
 
-        <section id="projects">
-            <h2>Selected Projects & Seminar Talks</h2>
+            <h2>Selected Projects</h2>
             
-            <div class="project-card">
-                <h3>An Introduction to Coxeter Groups and Reflection Groups</h3>
-                <div>
-                    <span class="tag">Combinatorics</span>
-                    <span class="tag">Group Theory</span>
-                </div>
-                <p>A comprehensive reading project focusing on the geometric realization of Coxeter groups as reflection groups. The project covers root systems, the exchange condition, and the classification of finite Coxeter groups.</p>
+            <div class="research-item">
+                <h3>Word Maps on Groups [cite: 33]</h3>
+                <span class="meta-info">Advisor: Dr. Tushar Kanta Naik, NISER | Summer 2025 [cite: 34, 35, 37]</span>
+                <p>Investigated word maps across finite, profinite, and algebraic groups[cite: 36]. Examined Waring-type problems, power maps \( (x \mapsto x^M) \), and probabilistic aspects related to character theory[cite: 38].</p>
             </div>
 
-            <div class="project-card">
-                <h3>Word Maps on Finite Simple Groups</h3>
-                <div>
-                    <span class="tag">Algebra</span>
-                    <span class="tag">Waring's Problem</span>
-                </div>
-                <p>An exploratory study on the surjectivity of word maps for specific families of finite simple groups, heavily relying on character theory and probabilistic methods. Explored classical results like the Ore conjecture.</p>
+            <div class="research-item">
+                <h3>Geometric Invariant Theory [cite: 21]</h3>
+                <span class="meta-info">Advisor: Dr. Mahmut Levent Doğan, DRP Turkiye | 2025-2026 [cite: 22, 27, 28]</span>
+                <p>Studied Hilbert's Finiteness Theorem, Matsushima's Criterion, Hilbert-Mumford Theorem, and the Kempf-Ness Theorem[cite: 32].</p>
             </div>
 
-            <div class="project-card">
-                <h3>Fundamentals of Geometric Invariant Theory (GIT)</h3>
-                <div>
-                    <span class="tag">Algebraic Geometry</span>
-                </div>
-                <p>Seminar talk summarizing the foundational concepts of Mumford's GIT, specifically focusing on affine and projective quotients, and the Hilbert-Mumford criterion for stability.</p>
+            <div class="research-item">
+                <h3>Groups and Geometry [cite: 39]</h3>
+                <span class="meta-info">Advisor: Dr. Krishnendu Gongopadhyay, IISER Mohali | Summer 2024 [cite: 40, 41, 42]</span>
+                <p>Supported by the Indian Academy of Sciences Summer Research Fellowship[cite: 43]. Studied isometries of the Euclidean plane, Frieze and Discontinuous groups, and the structure of triangle groups[cite: 45]. Explored regular tilings and introductory hyperbolic geometry[cite: 46].</p>
+            </div>
+
+            <div class="research-item">
+                <h3>Combinatorial Aspects of Coxeter Groups [cite: 47]</h3>
+                <span class="meta-info">Advisor: Dr. Tushar Kanta Naik, NISER | Summer 2023 [cite: 48, 49, 50]</span>
+                <p>Explored reduced expressions, length functions, the strong exchange condition, and Bruhat order[cite: 51]. Constructed geometric realizations of Coxeter groups using root systems[cite: 52].</p>
             </div>
         </section>
 
-        <section id="contact" class="contact-info">
-            <h2>Contact</h2>
-            <p>Email: rameswar.patro [at] niser [dot] ac [dot] in</p>
-            <p>Location: Jatni, Odisha, India</p>
-            <p><a href="#" style="color: #2980b9; text-decoration: none; font-weight: bold;">Download Full Curriculum Vitae (PDF)</a></p>
+        <section id="awards">
+            <h2>Selected Awards & Honors</h2>
+            <ul>
+                <li>GATE Mathematics: AIR 37 (2026) [cite: 59]</li>
+                <li>NBHM Master's and Doctoral Scholarship (2025) [cite: 59]</li>
+                <li>CSIR-NET JRF: AIR JRF-34 (December 2025) [cite: 59]</li>
+                <li>Academic Excellence Award: Highest SGPA (2023, 2024, 2025) [cite: 59]</li>
+                <li>Mimamsa Competition: Zonal Topper (2024) [cite: 59]</li>
+            </ul>
         </section>
     </div>
 
