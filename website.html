@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Master Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0f7fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .app-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #00796b;
+            margin-top: 0;
+        }
+        #question {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 18px;
+            width: 100px;
+            text-align: center;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        #feedback {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            min-height: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <h1>Math Master Quiz</h1>
+        <p>Solve the problem below:</p>
+        <div id="question">Loading...</div>
+        
+        <input type="number" id="answerInput" placeholder="?" autocomplete="off">
+        <button onclick="checkAnswer()">Submit</button>
+
+        <div id="feedback"></div>
+    </div>
+
+    <script>
+        let num1, num2, correctAnswer;
+
+        // Function to generate a new math problem
+        function generateProblem() {
+            num1 = Math.floor(Math.random() * 20) + 1; // Random number 1-20
+            num2 = Math.floor(Math.random() * 20) + 1; // Random number 1-20
+            correctAnswer = num1 + num2;
+            
+            document.getElementById("question").innerText = `${num1} + ${num2} = ?`;
+            document.getElementById("answerInput").value = ''; // Clear input
+            document.getElementById("feedback").innerText = ''; // Clear feedback
+            document.getElementById("answerInput").focus();
+        }
+
+        // Function to check the user's answer
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById("answerInput").value);
+            const feedbackElement = document.getElementById("feedback");
+
+            if (isNaN(userAnswer)) {
+                feedbackElement.innerText = "Please enter a valid number!";
+                feedbackElement.style.color = "orange";
+                return;
+            }
+
+            if (userAnswer === correctAnswer) {
+                feedbackElement.innerText = "Correct! Great job! 🎉";
+                feedbackElement.style.color = "green";
+                setTimeout(generateProblem, 1500); // Load next question after 1.5s
+            } else {
+                feedbackElement.innerText = "Not quite. Try again! ❌";
+                feedbackElement.style.color = "red";
+            }
+        }
+
+        // Allow pressing "Enter" to submit
+        document.getElementById("answerInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                checkAnswer();
+            }
+        });
+
+        // Initialize the first problem when the page loads
+        window.onload = generateProblem;
+    </script>
+</body>
+</html>
