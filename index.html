@@ -37,6 +37,7 @@
             height: 100vh;
             z-index: -1;
             background-color: var(--bg-color);
+            pointer-events: none;
         }
 
         /* Container for the actual website content */
@@ -45,17 +46,16 @@
             margin: 60px auto;
             padding: 50px;
             
-            /* Lowered opacity from 0.95 to 0.70 to let the canvas show through */
-            background: rgba(255, 255, 255, 0.70); 
+            /* Dropped to 20% opacity so the background is highly visible */
+            background: rgba(255, 255, 255, 0.2); 
             
             border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
             
-            /* Increased blur slightly so text remains easy to read over the moving points */
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px); /* Added for Safari support */
+            /* Commented out the blur to test if it's causing a browser bug */
+            /* backdrop-filter: blur(5px); */
+            /* -webkit-backdrop-filter: blur(5px); */
         }
-
         h1, h2, h3, h4 {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--primary-color);
