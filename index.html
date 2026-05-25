@@ -40,14 +40,20 @@
         }
 
         /* Container for the actual website content */
-        .content-wrapper {
+       .content-wrapper {
             max-width: 900px;
             margin: 60px auto;
             padding: 50px;
-            background: rgba(255, 255, 255, 0.95);
+            
+            /* Lowered opacity from 0.95 to 0.70 to let the canvas show through */
+            background: rgba(255, 255, 255, 0.70); 
+            
             border-radius: 12px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-            backdrop-filter: blur(5px);
+            
+            /* Increased blur slightly so text remains easy to read over the moving points */
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); /* Added for Safari support */
         }
 
         h1, h2, h3, h4 {
