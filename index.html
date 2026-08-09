@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Rameswar Patro | Academic Portfolio</title>
-    <meta name="description" content="Academic portfolio of Arameswar Patro, an M.Sc. mathematics researcher focusing on Coxeter groups, simple groups of Lie type, and geometric invariant theory.">
-<meta name="keywords" content="Mathematics, Coxeter Groups, Geometric Invariant Theory, Research Portfolio">
+    <meta name="description" content="Academic portfolio of A Rameswar Patro, a PhD mathematics researcher focusing on Coxeter groups, algebraic groups, and group rings.">
+    <meta name="keywords" content="Mathematics, Coxeter Groups, Geometric Invariant Theory, Research Portfolio, IISc">
     
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -30,7 +30,6 @@
             line-height: 1.6;
         }
 
-        /* The canvas for the generative background */
         #voronoi-canvas {
             position: fixed;
             top: 0;
@@ -42,29 +41,23 @@
             pointer-events: none;
         }
 
-        /* Container for the actual website content */
-       .content-wrapper {
+        .content-wrapper {
             max-width: 900px;
             margin: 60px auto;
             padding: 50px;
-            
-            /* Dropped to 20% opacity so the background is highly visible */
-            background: rgba(255, 255, 255, 0.2); 
-            
+            background: rgba(255, 255, 255, 0.85); 
             border-radius: 12px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-            
-            /* Commented out the blur to test if it's causing a browser bug */
-            /* backdrop-filter: blur(5px); */
-            /* -webkit-backdrop-filter: blur(5px); */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
+
         h1, h2, h3, h4 {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--primary-color);
             margin-top: 1.5em;
         }
 
-        /* Header Layout for Photo */
         header {
             display: flex;
             align-items: center;
@@ -81,7 +74,7 @@
             object-fit: cover;
             border: 3px solid var(--accent-color);
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            flex-shrink: 0; /* Prevents the photo from squishing */
+            flex-shrink: 0;
         }
 
         .header-text {
@@ -211,9 +204,9 @@
             <img src="photo.jpeg" alt="A Rameswar Patro" class="profile-photo">
             
             <div class="header-text">
-                <h1>A Rameswar Patro</h1>
-                <p style="font-size: 1.2rem; color: #555; margin-bottom: 5px;"><strong>Integrated M.Sc. Student in Mathematics</strong></p>
-                <p style="margin-top: 0; font-family: 'Segoe UI', sans-serif;">National Institute of Science Education and Research (NISER)</p>
+                <h1>A Rameswar Patro[cite: 1]</h1>
+                <p style="font-size: 1.2rem; color: #555; margin-bottom: 5px;"><strong>PhD in Mathematics[cite: 1]</strong></p>
+                <p style="margin-top: 0; font-family: 'Segoe UI', sans-serif;">Indian Institute of Science (IISc), Bengaluru[cite: 1]</p>
             </div>
         </header>
 
@@ -222,112 +215,136 @@
             <a href="#research">Interests & Coursework</a>
             <a href="#preprints">Preprints</a>
             <a href="#projects">Research Projects</a>
+            <a href="#conferences">Conferences</a>
             <a href="#awards">Awards</a>
+            <a href="#activities">Activities</a>
         </nav> 
 
         <section id="education">
-            <h2>Education</h2>
+            <h2>Education[cite: 1]</h2>
             <div class="education-card">
-                <h3>Integrated M.Sc. in Mathematics</h3>
-                <div class="meta-info"><strong>NISER, Bhubaneswar</strong> | 2021 – 2026 (Expected)</div>
+                <h3>PhD in Mathematics[cite: 1]</h3>
+                <div class="meta-info"><strong>Indian Institute of Science (IISc), Bengaluru[cite: 1]</strong> | 2026 – 2031[cite: 1]</div>
+            </div>
+            <div class="education-card">
+                <h3>Integrated M.Sc. in Mathematics[cite: 1]</h3>
+                <div class="meta-info"><strong>National Institute of Science Education and Research (NISER), Bhubaneswar[cite: 1]</strong> | 2021 – 2026[cite: 1]</div>
                 <ul>
-                    <li><strong>Minor:</strong> Computer Science</li>
-                    <li><strong>CGPA:</strong> 9.46/10.00</li>
-                    <li><strong>M.Sc. Thesis:</strong> Groups of Lie Type | <em>Advisor: Dr. Tushar Kanta Naik</em></li>
+                    <li><strong>Minor:</strong> Computer Science[cite: 1]</li>
+                    <li><strong>CGPA:</strong> 9.46/10.00 (up to 9th semester)[cite: 1]</li>
+                    <li><strong>M.Sc. Thesis:</strong> Groups of Lie Type[cite: 1] | <em>Advisor: Dr. Tushar Kanta Naik[cite: 1]</em></li>
                 </ul>
             </div>
             <div class="education-card">
-                <h3>Previous Education</h3>
+                <h3>Previous Education[cite: 1]</h3>
                 <ul>
-                    <li><strong>AISSCE (Class XII), CBSE</strong> - DAV Public School, Bhubaneswar (96.2%)</li>
-                    <li><strong>AISSE (Class X), CBSE</strong> - Sankalp Senior Secondary School, Ralaba, Berhampur (94.6%)</li>
+                    <li><strong>AISSCE (Class XII), CBSE</strong> - DAV Public School, Bhubaneswar (96.2%)[cite: 1]</li>
+                    <li><strong>AISSE (Class X), CBSE</strong> - Sankalp Senior Secondary School, Ralaba, Berhampur (94.6%)[cite: 1]</li>
                 </ul>
             </div>
         </section>
 
         <section id="research">
-            <h2>Research Interests</h2>
-            <p><strong>Algebra</strong></p>
-            <p><strong>Core Focus:</strong> Algebraic Groups, Coxeter groups</p>
+            <h2>Research Interests[cite: 1]</h2>
+            <p><strong>Core Focus:</strong> Coxeter groups, Group Rings, Algebraic Groups[cite: 1]</p>
             
-            <h3 style="font-size: 1.1rem; margin-top: 20px;">Selected Advanced Coursework</h3>
+            <h3 style="font-size: 1.1rem; margin-top: 20px;">Selected Advanced Coursework[cite: 1]</h3>
             <ul class="two-col-list">
-                <li>Advanced Linear Algebra</li>
-                <li>Lie Algebras</li>
-                <li>Commutative Algebra</li>
-                <li>Algebraic Geometry</li>
-                <li>Introduction to Manifolds</li>
-                <li>Representation Theory</li>
-                <li>Algorithmic Coding Theory</li>
-                <li>Parametrized Algorithms</li>
+                <li>Advanced Linear Algebra[cite: 1]</li>
+                <li>Lie Algebras[cite: 1]</li>
+                <li>Commutative Algebra[cite: 1]</li>
+                <li>Algebraic Geometry[cite: 1]</li>
+                <li>Introduction to Manifolds[cite: 1]</li>
+                <li>Representation Theory[cite: 1]</li>
+                <li>Algorithmic Coding Theory[cite: 1]</li>
+                <li>Parametrized Algorithms[cite: 1]</li>
             </ul>
         </section>
 
         <section id="preprints">
-            <h2>Preprints & Publications</h2>
+            <h2>Publications and Preprints[cite: 1]</h2>
             <div class="project-card">
-                <a href="https://arxiv.org/abs/2605.22065" class="preprint-link">Symmetry and Rigidity of Star-Shaped Coxeter Systems</a>
-                <p><em>with Arijit Mahato and Dr. Tushar Kanta Naik.</em></p>
+                <a href="https://arxiv.org/abs/2605.22065" class="preprint-link">Symmetry and Rigidity of Star-Shaped Coxeter Systems[cite: 1]</a>
+                <p><em>with Arijit Mahato and Dr. Tushar Kanta Naik.[cite: 1]</em></p>
             </div>
         </section>
 
         <section id="projects">
-            <h2>Research Projects</h2>
+            <h2>Research Projects[cite: 1]</h2>
             
             <div class="project-card">
-                <h3>Geometric Invariant Theory</h3>
-                <div class="meta-info"><strong>Advisor:</strong> Dr. Mahmut Levent Doğan | <strong>Institution:</strong> DRP, Turkey | <em>Summer 2025</em></div>
+                <h3>Geometric Invariant Theory[cite: 1]</h3>
+                <div class="meta-info"><strong>Advisor:</strong> Dr. Mahmut Levent Doğan[cite: 1] | <strong>Institution:</strong> DRP, Turkey[cite: 1] | <em>Summer 2025[cite: 1]</em></div>
                 <ul>
-                    <li>Studied Hilbert's Finiteness Theorem, Matsushima's Criterion, Hilbert-Mumford Theorem, and Kempf-Ness Theorem.</li>
+                    <li>Studied Hilbert's Finiteness Theorem, Matsushima's Criterion, Hilbert-Mumford Theorem, and Kempf-Ness Theorem.[cite: 1]</li>
                 </ul>
             </div>
 
             <div class="project-card">
-                <h3>Word Maps on Groups</h3>
-                <div class="meta-info"><strong>Advisor:</strong> Dr. Tushar Kanta Naik | <strong>Institution:</strong> NISER | <em>Summer 2025</em></div>
+                <h3>Word Maps on Groups[cite: 1]</h3>
+                <div class="meta-info"><strong>Advisor:</strong> Dr. Tushar Kanta Naik[cite: 1] | <strong>Institution:</strong> NISER[cite: 1] | <em>Summer 2025[cite: 1]</em></div>
                 <ul>
-                    <li>Investigated word maps across finite, profinite, and algebraic groups.</li>
-                    <li>Examined Waring-type problems, power maps (x &mapsto; x^M), and probabilistic aspects related to character theory.</li>
+                    <li>Investigated word maps across finite, profinite, and algebraic groups.[cite: 1]</li>
+                    <li>Examined Waring-type problems, power maps ($x \mapsto x^{M}$), and probabilistic aspects related to character theory.[cite: 1]</li>
                 </ul>
             </div>
 
             <div class="project-card">
-                <h3>Groups and Geometry</h3>
-                <div class="meta-info"><strong>Advisor:</strong> Dr. Krishnendu Gongopadhyay | <strong>Institution:</strong> IISER Mohali | <em>Summer 2024</em></div>
-                <div class="tag">Supported by IAS Summer Research Fellowship</div>
+                <h3>Groups and Geometry[cite: 1]</h3>
+                <div class="meta-info"><strong>Advisor:</strong> Dr. Krishnendu Gongopadhyay[cite: 1] | <strong>Institution:</strong> IISER Mohali[cite: 1] | <em>Summer 2024[cite: 1]</em></div>
+                <div class="tag">Supported by Indian Academy of Sciences Summer Research Fellowship[cite: 1]</div>
                 <ul>
-                    <li>Studied isometries of the Euclidean plane, Frieze and Discontinuous groups, and the structure of triangle groups.</li>
-                    <li>Explored regular tilings and introductory hyperbolic geometry.</li>
+                    <li>Studied isometries of the Euclidean plane, Frieze and Discontinuous groups, and the structure of triangle groups.[cite: 1]</li>
+                    <li>Explored regular tilings and introductory hyperbolic geometry.[cite: 1]</li>
                 </ul>
             </div>
 
             <div class="project-card">
-                <h3>Combinatorial Aspects of Coxeter Groups</h3>
-                <div class="meta-info"><strong>Advisor:</strong> Dr. Tushar Kanta Naik | <strong>Institution:</strong> NISER | <em>Summer 2023</em></div>
+                <h3>Combinatorial Aspects of Coxeter Groups[cite: 1]</h3>
+                <div class="meta-info"><strong>Advisor:</strong> Dr. Tushar Kanta Naik[cite: 1] | <strong>Institution:</strong> NISER[cite: 1] | <em>Summer 2023[cite: 1]</em></div>
                 <ul>
-                    <li>Explored reduced expressions, length functions, the strong exchange condition, and Bruhat order.</li>
-                    <li>Constructed geometric realizations of Coxeter groups using root systems.</li>
+                    <li>Explored reduced expressions, length functions, the strong exchange condition, and Bruhat order.[cite: 1]</li>
+                    <li>Constructed geometric realizations of Coxeter groups using root systems.[cite: 1]</li>
                 </ul>
             </div>
         </section>
 
-        <section id="awards">
-            <h2>Awards & Honors</h2>
+        <section id="conferences">
+            <h2>Conferences and Workshops[cite: 1]</h2>
             <ul>
-                <li><strong>GATE Mathematics:</strong> AIR 37 (2026)</li>
-                <li><strong>CSIR-NET JRF:</strong> AIR JRF-34 (2025)</li>
-                <li><strong>NBHM Master's and Doctoral Scholarship:</strong> Selected (2025)</li>
-                <li><strong>Mimamsa Competition:</strong> Zonal Topper (2024)</li>
-                <li><strong>Abhiprajna Competition:</strong> Second Place (2025)</li>
-                <li><strong>Academic Excellence Award:</strong> Highest SGPA (2023, 2024, 2025)</li>
-                <li><strong>DAE DISHA Fellowship</strong> (2021-2026)</li>
+                <li><strong>Rigidity of Discrete Groups</strong> | IISER Mohali 2025[cite: 1]</li>
+                <li><strong>Recent Developments in Group Theory</strong> | IIT Bhubaneswar 2025[cite: 1]</li>
+                <li><strong>The Singapore-Bangalore "What is ...?" Workshop on Mathematics</strong> | IISc Bangalore 2025[cite: 1]</li>
+                <li><strong>Seminar Series on Algebraic Graph Theory</strong> | NISER 2025[cite: 1]</li>
+            </ul>
+        </section>
+
+        <section id="awards">
+            <h2>Awards & Honors[cite: 1]</h2>
+            <ul>
+                <li><strong>GATE Mathematics:</strong> AIR 37 (2026)[cite: 1]</li>
+                <li><strong>NBHM Master's and Doctoral Scholarship:</strong> Selected (2025)[cite: 1]</li>
+                <li><strong>CSIR-NET JRF:</strong> AIR JRF-34 (2025 December)[cite: 1]</li>
+                <li><strong>Mimamsa Competition:</strong> Zonal Topper (2024)[cite: 1]</li>
+                <li><strong>Abhiprajna Competition:</strong> Second Place (2025)[cite: 1]</li>
+                <li><strong>Academic Excellence Award:</strong> Highest SGPA (2023, 2024, 2025)[cite: 1]</li>
+                <li><strong>DAE DISHA Fellowship</strong> (2021-2026)[cite: 1]</li>
+            </ul>
+        </section>
+
+        <section id="activities">
+            <h2>Activities & Service[cite: 1]</h2>
+            <ul>
+                <li><strong>Active member of Mathematix Club, NISER:</strong> Organized events and mathematical outreach programs.[cite: 1]</li>
+                <li><strong>Coordinated Pi-Day Celebrations</strong> at NISER (2024, 2025).[cite: 1]</li>
+                <li><strong>Volunteered at Open Day and Science Camp</strong> demonstrations for school students (2023, 2024).[cite: 1]</li>
             </ul>
         </section>
 
         <section id="contact" class="contact-info">
             <h2>Contact</h2>
-            <p>Email: <a href="mailto:arameswar.patro.math@gmail.com" style="color: var(--accent-color);">arameswar.patro.math@gmail.com</a> | Phone: +91 76840 83583</p>
-            <p>Room 301, Bhagirathi Hostel, NISER, Jatni, Odisha</p>
+            <p>Email: <a href="mailto:arameswar.patro.math@gmail.com" style="color: var(--accent-color);">arameswar.patro.math@gmail.com</a>[cite: 1] | Phone: +91 76840 83583[cite: 1]</p>
+            <p>Room 002 C, KRVH, IISc, Bengaluru, Karnataka[cite: 1]</p>
         </section>
     </div>
 
@@ -346,10 +363,8 @@
         window.addEventListener('resize', resize);
         resize();
 
-        // Slightly fewer points (60 instead of 80) can make the geometry stand out more cleanly
         const numPoints = 60;
         const points = Array.from({length: numPoints}, () => [Math.random() * width, Math.random() * height]);
-        // Slowed down the velocities just a bit for a calmer background effect
         const velocities = Array.from({length: numPoints}, () => [(Math.random() - 0.5) * 0.5, (Math.random() - 0.5) * 0.5]);
 
         function update() {
@@ -357,7 +372,6 @@
                 points[i][0] += velocities[i][0];
                 points[i][1] += velocities[i][1];
                 
-                // Bounce off edges
                 if (points[i][0] <= 0 || points[i][0] >= width) velocities[i][0] *= -1;
                 if (points[i][1] <= 0 || points[i][1] >= height) velocities[i][1] *= -1;
             }
@@ -367,28 +381,24 @@
 
             context.clearRect(0, 0, width, height);
 
-            // 1. Add subtle background fills to the cells to give the diagram depth
             for (let i = 0; i < numPoints; i++) {
                 context.beginPath();
                 voronoi.renderCell(i, context);
-                // Cycle through a few very faint opacities of your blue accent color
                 const opacity = 0.01 + (i % 5) * 0.01;
                 context.fillStyle = `rgba(41, 128, 185, ${opacity})`;
                 context.fill();
             }
 
-            // 2. Make the structural edges more visible
-            context.strokeStyle = 'rgba(44, 62, 80, 0.25)'; // Opacity bumped from 0.15 to 0.25
-            context.lineWidth = 1.2; // Slightly thicker lines
+            context.strokeStyle = 'rgba(44, 62, 80, 0.25)';
+            context.lineWidth = 1.2;
             
             context.beginPath();
             voronoi.render(context);
             context.stroke();
 
-            // 3. Render the actual generating points for a nice technical aesthetic
             context.fillStyle = 'rgba(44, 62, 80, 0.3)';
             context.beginPath();
-            delaunay.renderPoints(context, 1.5); // 1.5px radius dots
+            delaunay.renderPoints(context, 1.5);
             context.fill();
             
             requestAnimationFrame(update);
