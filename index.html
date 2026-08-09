@@ -20,7 +20,8 @@
             --accent-hover: #1a5276;
             --bg-color: #f8f9fa;
             --text-color: #333;
-            --card-bg: #fff;
+            /* Made cards slightly transparent to reveal background */
+            --card-bg: #ffffff; 
         }
 
         body {
@@ -44,26 +45,16 @@
             pointer-events: none;
         }
 
+        /* Transparent page wrapper: let the Voronoi background breathe */
         .content-wrapper {
-            max-width: 900px;
-            margin: 60px auto;
-            padding: 40px 50px;
-            background: rgba(255, 255, 255, 0.9); 
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px 30px;
+            background: transparent;
             border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--primary-color);
-        }
-
-        h2 {
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 8px;
-            margin-top: 1.5em;
+            box-shadow: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
         }
 
         /* Navigation Tabs */
@@ -71,11 +62,12 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            background: rgba(238, 238, 238, 0.7);
+            background: #ffffff;
             padding: 15px;
             border-radius: 8px;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.10);
         }
 
         nav a {
@@ -92,7 +84,7 @@
         }
 
         nav a:hover {
-            background: rgba(41, 128, 185, 0.1);
+            background: rgba(41, 128, 185, 0.15);
             color: var(--accent-color);
         }
 
@@ -100,6 +92,179 @@
             background: var(--accent-color);
             color: white;
             box-shadow: 0 4px 10px rgba(41, 128, 185, 0.3);
+        }
+
+        /* =========================================================
+           RAMESWAR / HOME TAB
+           Two separate solid-white panels with a real Voronoi gap
+           ========================================================= */
+
+        #rameswar {
+            background: transparent;
+        }
+
+        #rameswar .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0;
+            background: transparent;
+            box-shadow: none;
+            margin: 0;
+        }
+
+        /* First solid-white panel: photo, name and affiliation */
+        #rameswar .rameswar-intro {
+            width: 100%;
+            max-width: 1000px;
+            box-sizing: border-box;
+            background: #ffffff;
+            padding: 35px 45px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        /* Second solid-white panel: biography and contact */
+        #rameswar .rameswar-bio {
+            width: 100%;
+            max-width: 1000px;
+            box-sizing: border-box;
+            background: #ffffff;
+            padding: 30px 45px;
+            margin-top: 35px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        #rameswar .rameswar-intro img {
+            width: 180px;
+            height: 180px;
+            aspect-ratio: 1 / 1;
+            flex: 0 0 180px;
+            box-sizing: border-box;
+            display: block;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            margin: 0 auto 20px auto;
+        }
+
+        #rameswar .hero-section h1 {
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+        }
+
+        #rameswar .hero-section h3 {
+            font-size: 1.4rem;
+            color: #555;
+            margin: 0 0 5px 0;
+            font-weight: normal;
+        }
+
+        #rameswar .hero-section p {
+            font-size: 1.1rem;
+            color: #333;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+
+        #rameswar .contact-info {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* =========================================================
+           OTHER TABS
+           Their existing cards remain solid white.
+           ========================================================= */
+
+        .tab-content > section {
+            background: transparent;
+            padding: 0;
+            margin-bottom: 25px;
+            box-shadow: none;
+        }
+
+        /* Section headings sit on their own solid-white panel */
+        .tab-content > section > h2,
+        .tab-content > section > h2 + p {
+            background: #ffffff;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        .tab-content > section > h2 {
+            padding-top: 20px;
+            padding-bottom: 8px;
+            margin-top: 0;
+            margin-bottom: 0;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .tab-content > section > h2 + p {
+            padding-bottom: 20px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Gallery / Miscellaneous / Resources headings */
+        #gallery > h2,
+        #gallery > p,
+        #misc > h2,
+        #misc > p,
+        #resources > h2,
+        #resources > p {
+            background: #ffffff;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        #gallery > h2,
+        #misc > h2,
+        #resources > h2 {
+            padding-top: 20px;
+            padding-bottom: 8px;
+            margin-top: 0;
+            margin-bottom: 0;
+            border-radius: 10px 10px 0 0;
+        }
+
+        #gallery > p,
+        #misc > p,
+        #resources > p {
+            padding-bottom: 20px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Keep white panels comfortable on smaller screens */
+        @media (max-width: 700px) {
+            .content-wrapper {
+                margin: 20px auto;
+                padding: 10px 15px;
+            }
+
+            nav {
+                margin-bottom: 25px;
+            }
+
+            #rameswar .rameswar-intro,
+            #rameswar .rameswar-bio {
+                padding: 25px 20px;
+            }
+
+            #rameswar .hero-section h1 {
+                font-size: 2.2rem;
+            }
+
+            #rameswar .hero-section p {
+                font-size: 1rem;
+            }
         }
 
         /* Tab Content Control */
@@ -117,48 +282,10 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Rameswar Tab (Home) */
-        .hero-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .hero-section img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--accent-color);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            margin-bottom: 20px;
-        }
-
-        .hero-section h1 {
-            font-size: 3rem;
-            margin: 0 0 10px 0;
-        }
-
-        .hero-section h3 {
-            font-size: 1.4rem;
-            color: #555;
-            margin: 0 0 5px 0;
-            font-weight: normal;
-        }
-
-        .hero-section p {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 600px;
-            margin-top: 20px;
-        }
-
         /* Cards (CV, Resources, etc) */
         .card {
             background: var(--card-bg);
-            border: 1px solid #e0e0e0;
+            border: 1px solid rgba(224, 224, 224, 0.8);
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
@@ -213,7 +340,7 @@
         }
 
         .gallery-item {
-            background: #fff;
+            background: var(--card-bg);
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -227,11 +354,11 @@
         .gallery-img-placeholder {
             width: 100%;
             height: 200px;
-            background: #e9ecef;
+            background: rgba(233, 236, 239, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #adb5bd;
+            color: #777;
             font-family: 'Segoe UI', sans-serif;
             font-size: 0.9rem;
         }
@@ -248,7 +375,7 @@
             font-size: 0.95rem;
             text-align: center;
             color: #444;
-            border-top: 1px solid #f1f1f1;
+            border-top: 1px solid rgba(241, 241, 241, 0.8);
         }
 
         /* Misc Links Grid */
@@ -260,7 +387,7 @@
         }
 
         .link-card {
-            background: #fff;
+            background: var(--card-bg);
             border-left: 4px solid var(--accent-color);
             padding: 20px;
             border-radius: 6px;
@@ -276,7 +403,7 @@
         
         .link-card p {
             font-size: 0.9rem;
-            color: #666;
+            color: #444;
             margin-top: 0;
             flex-grow: 1;
         }
@@ -313,6 +440,7 @@
         .contact-info {
             text-align: center;
             margin-top: 30px;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
         }
     </style>
 </head>
@@ -336,23 +464,33 @@
              ========================================== -->
         <div id="rameswar" class="tab-content">
             <div class="hero-section">
-                <!-- Replace 'photo.jpeg' with your actual image path -->
-                <img src="photo.jpeg" alt="A Rameswar Patro">
-                <h1>A Rameswar Patro</h1>
-                <h3>PhD Researcher in Mathematics</h3>
-                <p style="font-family: 'Segoe UI', sans-serif; font-weight: bold; color: var(--primary-color);">Indian Institute of Science (IISc), Bengaluru</p>
-                
-                <p>
-                    Welcome to my personal website. I am a mathematician primarily focusing on the beautiful and intricate structures found within <strong>Coxeter groups, Groups of Lie type, and Algebraic Groups</strong>. 
-                </p>
-                <p>
-                    My academic journey started with an Integrated M.Sc. at NISER Bhubaneswar, leading to my current doctoral research at IISc. Beyond mathematics, this space serves as a collection of my professional history, personal galleries, and resources I find valuable.
-                </p>
 
-                <div class="contact-info">
-                    <p>Email: <a href="mailto:arameswar.patro.math@gmail.com" style="color: var(--accent-color);">arameswar.patro.math@gmail.com</a> | Phone: +91 76840 83583</p>
-                    <p>Room 002 C, KRVH, IISc, Bengaluru, Karnataka</p>
+                <!-- Solid white identity panel -->
+                <div class="rameswar-intro">
+                    <!-- Replace 'photo.jpeg' with your actual image path -->
+                    <img src="photo.jpeg" alt="A Rameswar Patro">
+                    <h1>A Rameswar Patro</h1>
+                    <h3>PhD Researcher in Mathematics</h3>
+                    <p style="font-family: 'Segoe UI', sans-serif; font-weight: bold; color: var(--primary-color);">
+                        Indian Institute of Science (IISc), Bengaluru
+                    </p>
                 </div>
+
+                <!-- Solid white biography panel; the gap above is transparent -->
+                <div class="rameswar-bio">
+                    <p>
+                        Welcome to my personal website. I am a mathematician primarily focusing on the beautiful and intricate structures found within <strong>Coxeter groups, Groups of Lie type, and Algebraic Groups</strong>.
+                    </p>
+                    <p>
+                        My academic journey started with an Integrated M.Sc. at NISER Bhubaneswar, leading to my current doctoral research at IISc. Beyond mathematics, this space serves as a collection of my professional history, personal galleries, and resources I find valuable.
+                    </p>
+
+                    <div class="contact-info">
+                        <p>Email: <a href="mailto:arameswar.patro.math@gmail.com" style="color: var(--accent-color);">arameswar.patro.math@gmail.com</a> | Phone: +91 76840 83583</p>
+                        <p>Room 002 C, KRVH, IISc, Bengaluru, Karnataka</p>
+                    </div>
+                </div>
+
             </div>
         </div>
 
