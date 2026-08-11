@@ -327,7 +327,7 @@
         }
         
         /* =========================================================
-           PUBLICATIONS & ACADEMICON LINKS
+           PUBLICATIONS & ICON LINKS
            ========================================================= */
         .pub-item {
             display: flex;
@@ -337,10 +337,10 @@
 
         .pub-icons {
             display: flex;
-            flex-direction: row; /* Aligns icons horizontally */
-            gap: 12px; /* Adds space between the icons */
+            flex-direction: row; 
+            gap: 12px; 
             flex-shrink: 0;
-            align-items: center; /* Vertically aligns icons with each other */
+            align-items: center; 
             padding-top: 2px;
         }
 
@@ -348,6 +348,9 @@
             font-size: 1.8rem;
             text-decoration: none;
             transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .pub-icon:hover {
@@ -362,11 +365,13 @@
             color: #8c1515;
         }
 
-        .pub-icon.doi {
-            color: #f39c12;
-        }
-        .pub-icon.doi:hover {
-            color: #d68910;
+        /* Styles for custom image icons acting as buttons */
+        .journal-cover-img {
+            height: 1.8rem; /* Matches the font-size of FontAwesome/Academicons */
+            width: auto;
+            border-radius: 2px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15); /* Gives it a neat miniature book look */
+            display: block;
         }
 
         .pub-details {
@@ -595,14 +600,14 @@
             <section id="preprints">
                 <h2>Publications</h2>
                 
-                <!-- NEW PUBLICATION FORMATTING WITH ACADEMICONS (HORIZONTAL) -->
                 <div class="card pub-item">
                     <div class="pub-icons">
                         <a href="https://arxiv.org/abs/2605.22065" target="_blank" class="pub-icon arxiv" title="View arXiv Preprint">
                             <i class="ai ai-arxiv"></i>
                         </a>
-                        <a href="https://doi.org/10.1007/s00605-026-02212-3" target="_blank" class="pub-icon doi" title="View Article DOI">
-                            <i class="ai ai-doi"></i>
+                        <!-- Custom Image Icon for the Journal -->
+                        <a href="https://doi.org/10.1007/s00605-026-02212-3" target="_blank" class="pub-icon" title="View Journal Article">
+                            <img src="605.webp" alt="Monatshefte für Mathematik Cover" class="journal-cover-img">
                         </a>
                     </div>
                     <div class="pub-details">
