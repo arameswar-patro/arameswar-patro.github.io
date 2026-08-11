@@ -398,11 +398,13 @@
             font-size: 0.95rem;
         }
 
-        /* Gallery Grid */
+        /* =========================================================
+           GALLERY GRID (Updated for larger images)
+           ========================================================= */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Increased min-width from 250px to 400px */
+            gap: 30px; /* Increased gap slightly for larger blocks */
             margin-top: 20px;
         }
 
@@ -420,7 +422,7 @@
 
         .gallery-img-placeholder {
             width: 100%;
-            height: 200px;
+            height: 300px; /* Increased height from 200px to 300px */
             background: rgba(233, 236, 239, 0.8);
             display: flex;
             align-items: center;
@@ -430,10 +432,9 @@
             font-size: 0.9rem;
         }
 
-        /* FIX: Ensure images display correctly in the gallery */
         .gallery-item img {
             width: 100%;
-            height: 200px;
+            height: 300px; /* Increased height from 200px to 300px */
             object-fit: cover;
             display: block; 
         }
@@ -583,7 +584,6 @@
                 </div>
             </section>
 
-            <!-- FIX: Added card wrapper to give coursework list an opaque background -->
             <section id="research">
                 <h2>Selected Advanced Coursework</h2>
                 <div class="card">
@@ -702,8 +702,6 @@
             
             <div class="gallery-grid">
                 
-                <!-- FIX: Added images directly into figure, removed placeholder divs for actual photos -->
-                
                 <!-- Gallery Item 1 -->
                 <figure class="gallery-item">
                     <img src="1000464057.jpg" alt="In IISc">
@@ -716,7 +714,7 @@
                     <figcaption class="gallery-caption">With colleagues in the "Recent Developments in Group Theory" Conference at IIT Bhubaneswar.</figcaption>
                 </figure>
 
-                <!-- Gallery Item 3 (Still a placeholder until you add a photo) -->
+                <!-- Gallery Item 3 (Placeholder) -->
                 <figure class="gallery-item">
                     <div class="gallery-img-placeholder">[ Insert Image Here ]</div>
                     <figcaption class="gallery-caption">Presenting my master's thesis findings.</figcaption>
