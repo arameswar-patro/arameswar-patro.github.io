@@ -9,6 +9,10 @@
     <!-- MathJax for rendering mathematics -->
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    <!-- Academicons and FontAwesome for customizable vector icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    
     <!-- D3.js for the generative background -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/d3-delaunay@6"></script>
@@ -96,7 +100,6 @@
 
         /* =========================================================
            RAMESWAR / HOME TAB
-           Two separate solid-white panels with a real Voronoi gap
            ========================================================= */
 
         #rameswar {
@@ -114,7 +117,6 @@
             margin: 0;
         }
 
-        /* First solid-white panel: photo, name and affiliation */
         #rameswar .rameswar-intro {
             width: 100%;
             max-width: 1000px;
@@ -125,7 +127,6 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.12);
         }
 
-        /* Second solid-white panel: biography and contact */
         #rameswar .rameswar-bio {
             width: 100%;
             max-width: 1000px;
@@ -178,7 +179,6 @@
 
         /* =========================================================
            OTHER TABS
-           Their existing cards remain solid white.
            ========================================================= */
 
         .tab-content > section {
@@ -188,7 +188,6 @@
             box-shadow: none;
         }
 
-        /* Section headings sit on their own solid-white panel */
         .tab-content > section > h2,
         .tab-content > section > h2 + p {
             background: #ffffff;
@@ -211,7 +210,6 @@
             border-radius: 0 0 10px 10px;
         }
 
-        /* Gallery / Miscellaneous / Resources headings */
         #gallery > h2,
         #gallery > p,
         #misc > h2,
@@ -242,7 +240,6 @@
             border-radius: 0 0 10px 10px;
         }
 
-        /* Keep white panels comfortable on smaller screens */
         @media (max-width: 700px) {
             .content-wrapper {
                 margin: 20px auto;
@@ -267,7 +264,6 @@
             }
         }
 
-        /* Tab Content Control */
         .tab-content {
             display: none;
             animation: fadeIn 0.4s ease-in-out;
@@ -282,7 +278,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Cards (CV, Resources, etc) */
         .card {
             background: var(--card-bg);
             border: 1px solid rgba(224, 224, 224, 0.8);
@@ -332,49 +327,46 @@
         }
         
         /* =========================================================
-           PUBLICATIONS & ICON LINKS
+           PUBLICATIONS & ACADEMICON LINKS
            ========================================================= */
         .pub-item {
             display: flex;
-            gap: 18px;
+            gap: 20px;
             align-items: flex-start;
         }
 
         .pub-icons {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 12px;
             flex-shrink: 0;
-            min-width: 50px;
-        }
-
-        .pub-icon-link {
-            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            background: var(--accent-color);
-            color: #fff !important;
-            font-size: 0.75rem;
-            font-weight: bold;
+            padding-top: 4px;
+        }
+
+        .pub-icon {
+            font-size: 1.8rem; /* Controls the size of the icon */
             text-decoration: none;
-            padding: 6px 8px;
-            border-radius: 4px;
-            transition: background 0.2s;
-            font-family: 'Segoe UI', sans-serif;
-            text-align: center;
-            letter-spacing: 0.5px;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s;
         }
 
-        .pub-icon-link:hover {
-            background: var(--accent-hover);
+        .pub-icon:hover {
+            transform: scale(1.2);
         }
 
-        .pub-icon-link.doi-icon {
-            background: #e67e22; /* Differentiates DOI from arXiv */
+        /* Specific Icon Colors */
+        .pub-icon.arxiv {
+            color: #b31b1b; /* Official arXiv red */
         }
-        
-        .pub-icon-link.doi-icon:hover {
-            background: #d35400;
+        .pub-icon.arxiv:hover {
+            color: #8c1515;
+        }
+
+        .pub-icon.doi {
+            color: #f39c12; /* DOI Orange/Yellow */
+        }
+        .pub-icon.doi:hover {
+            color: #d68910;
         }
 
         .pub-details {
@@ -437,7 +429,7 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
-            display: none; /* Change to block when real images are added */
+            display: none; 
         }
 
         .gallery-caption {
@@ -603,12 +595,15 @@
             <section id="preprints">
                 <h2>Publications</h2>
                 
-                <!-- NEW PUBLICATION FORMATTING -->
+                <!-- NEW PUBLICATION FORMATTING WITH ACADEMICONS -->
                 <div class="card pub-item">
                     <div class="pub-icons">
-                        <!-- Hyperlink icons directly inline with publication -->
-                        <a href="https://doi.org/10.1007/s00605-026-02212-3" target="_blank" class="pub-icon-link doi-icon" title="View Article DOI">DOI</a>
-                        <a href="https://arxiv.org/abs/2605.22065" target="_blank" class="pub-icon-link" title="View arXiv Preprint">ARX</a>
+                        <a href="https://arxiv.org/abs/2605.22065" target="_blank" class="pub-icon arxiv" title="View arXiv Preprint">
+                            <i class="ai ai-arxiv"></i>
+                        </a>
+                        <a href="https://doi.org/10.1007/s00605-026-02212-3" target="_blank" class="pub-icon doi" title="View Article DOI">
+                            <i class="ai ai-doi"></i>
+                        </a>
                     </div>
                     <div class="pub-details">
                         <h3 class="pub-title">Symmetry and rigidity of star-shaped coxeter systems</h3>
