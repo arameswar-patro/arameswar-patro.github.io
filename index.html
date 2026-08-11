@@ -367,10 +367,10 @@
 
         /* Styles for custom image icons acting as buttons */
         .journal-cover-img {
-            height: 1.8rem; /* Matches the font-size of FontAwesome/Academicons */
+            height: 1.8rem; 
             width: auto;
             border-radius: 2px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.15); /* Gives it a neat miniature book look */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15); 
             display: block;
         }
 
@@ -430,11 +430,12 @@
             font-size: 0.9rem;
         }
 
+        /* FIX: Ensure images display correctly in the gallery */
         .gallery-item img {
             width: 100%;
             height: 200px;
             object-fit: cover;
-            display: none; 
+            display: block; 
         }
 
         .gallery-caption {
@@ -527,7 +528,6 @@
 
                 <!-- Solid white identity panel -->
                 <div class="rameswar-intro">
-                    <!-- Replace 'photo.jpeg' with your actual image path -->
                     <img src="photo.jpeg" alt="A Rameswar Patro">
                     <h1>A Rameswar Patro</h1>
                     <h3>PhD Researcher in Mathematics</h3>
@@ -583,18 +583,21 @@
                 </div>
             </section>
 
+            <!-- FIX: Added card wrapper to give coursework list an opaque background -->
             <section id="research">
                 <h2>Selected Advanced Coursework</h2>
-                <ul class="two-col-list">
-                    <li>Advanced Linear Algebra</li>
-                    <li>Lie Algebras</li>
-                    <li>Commutative Algebra</li>
-                    <li>Algebraic Geometry</li>
-                    <li>Introduction to Manifolds</li>
-                    <li>Representation Theory</li>
-                    <li>Algorithmic Coding Theory</li>
-                    <li>Parametrized Algorithms</li>
-                </ul>
+                <div class="card">
+                    <ul class="two-col-list">
+                        <li>Advanced Linear Algebra</li>
+                        <li>Lie Algebras</li>
+                        <li>Commutative Algebra</li>
+                        <li>Algebraic Geometry</li>
+                        <li>Introduction to Manifolds</li>
+                        <li>Representation Theory</li>
+                        <li>Algorithmic Coding Theory</li>
+                        <li>Parametrized Algorithms</li>
+                    </ul>
+                </div>
             </section>
 
             <section id="preprints">
@@ -605,7 +608,6 @@
                         <a href="https://arxiv.org/abs/2605.22065" target="_blank" class="pub-icon arxiv" title="View arXiv Preprint">
                             <i class="ai ai-arxiv"></i>
                         </a>
-                        <!-- Custom Image Icon for the Journal -->
                         <a href="https://doi.org/10.1007/s00605-026-02212-3" target="_blank" class="pub-icon" title="View Journal Article">
                             <img src="605.webp" alt="Monatshefte für Mathematik Cover" class="journal-cover-img">
                         </a>
@@ -699,28 +701,27 @@
             <p>A collection of moments from conferences, campus life, and beyond.</p>
             
             <div class="gallery-grid">
+                
+                <!-- FIX: Added images directly into figure, removed placeholder divs for actual photos -->
+                
                 <!-- Gallery Item 1 -->
                 <figure class="gallery-item">
-                    <div class="gallery-img-placeholder"><img src="1000464057.jpg" alt="Description"></div>
-                    <!-- <img src="your-image-1.jpg" alt="Description"> -->
+                    <img src="1000464057.jpg" alt="In IISc">
                     <figcaption class="gallery-caption">In IISc for the "What is...?" Conference in 2025.</figcaption>
                 </figure>
                 
                 <!-- Gallery Item 2 -->
                 <figure class="gallery-item">
-                    <div class="gallery-img-placeholder"><img src="DSC_2363.jpg" alt="Description"></div>
-                    <!-- <img src="your-image-2.jpg" alt="Description"> -->
-                    <figcaption class="gallery-caption">With the colleagues in the "Recent Developments in Group Theory" Conferece in IIT Bhubaneswar.</figcaption>
+                    <img src="DSC_2363.jpg" alt="At IIT Bhubaneswar">
+                    <figcaption class="gallery-caption">With colleagues in the "Recent Developments in Group Theory" Conference at IIT Bhubaneswar.</figcaption>
                 </figure>
 
-                <!-- Gallery Item 3 -->
+                <!-- Gallery Item 3 (Still a placeholder until you add a photo) -->
                 <figure class="gallery-item">
                     <div class="gallery-img-placeholder">[ Insert Image Here ]</div>
-                    <!-- <img src="your-image-3.jpg" alt="Description"> -->
                     <figcaption class="gallery-caption">Presenting my master's thesis findings.</figcaption>
                 </figure>
                 
-                <!-- Add more <figure> blocks as needed -->
             </div>
         </div>
 
@@ -761,7 +762,6 @@
                     <p>Mathematics PhD Researcher at IISER, Pune.</p>
                     <a href="https://sandipan04.github.io/webpage/index.html" class="btn" target="_blank" rel="noopener">Visit Website</a>
                 </div>
-                <!-- Add more cards as needed -->
             </div>
         </div>
 
