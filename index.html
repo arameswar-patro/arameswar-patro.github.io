@@ -337,15 +337,15 @@
 
         .pub-icons {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
+            flex-direction: row; /* Aligns icons horizontally */
+            gap: 12px; /* Adds space between the icons */
             flex-shrink: 0;
-            align-items: center;
-            padding-top: 4px;
+            align-items: center; /* Vertically aligns icons with each other */
+            padding-top: 2px;
         }
 
         .pub-icon {
-            font-size: 1.8rem; /* Controls the size of the icon */
+            font-size: 1.8rem;
             text-decoration: none;
             transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s;
         }
@@ -356,14 +356,14 @@
 
         /* Specific Icon Colors */
         .pub-icon.arxiv {
-            color: #b31b1b; /* Official arXiv red */
+            color: #b31b1b;
         }
         .pub-icon.arxiv:hover {
             color: #8c1515;
         }
 
         .pub-icon.doi {
-            color: #f39c12; /* DOI Orange/Yellow */
+            color: #f39c12;
         }
         .pub-icon.doi:hover {
             color: #d68910;
@@ -595,7 +595,7 @@
             <section id="preprints">
                 <h2>Publications</h2>
                 
-                <!-- NEW PUBLICATION FORMATTING WITH ACADEMICONS -->
+                <!-- NEW PUBLICATION FORMATTING WITH ACADEMICONS (HORIZONTAL) -->
                 <div class="card pub-item">
                     <div class="pub-icons">
                         <a href="https://arxiv.org/abs/2605.22065" target="_blank" class="pub-icon arxiv" title="View arXiv Preprint">
